@@ -352,6 +352,18 @@ class MoySkladICMLParser
                             'name' => $assortiment['product']['uom']['name'],
                             'description' => $assortiment['product']['uom']['description'],
                         );
+                    } elseif (isset($assortiment['product']['uom']) && isset($assortiment['product']['uom']['externalCode'])) {
+                        $products[$assortiment['id']]['unit'] = array (
+                            'code' => $assortiment['product']['uom']['externalCode'],
+                            'name' => str_replace(' ','',$assortiment['product']['uom']['name']),
+                            'description' => $assortiment['product']['uom']['name'],
+                        );
+                    } elseif (isset($assortiment['uom']) && isset($assortiment['uom']['externalCode'])) {
+                        $products[$assortiment['id']]['unit'] = array (
+                            'code' => $assortiment['uom']['externalCode'],
+                            'name' => str_replace(' ','',$assortiment['product']['uom']['name']),
+                            'description' => $assortiment['product']['uom']['name'],
+                        );
                     } else {
                         $products[$assortiment['id']]['unit'] = '';
                     }
